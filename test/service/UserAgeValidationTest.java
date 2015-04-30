@@ -6,10 +6,6 @@ import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import service.AgeValidator;
-import service.Database;
-import service.InvalidAgeError;
-import service.User;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
