@@ -19,5 +19,5 @@ public interface Database {
    * @param UserId is the id on each user.
    * @return is to return the user id.
    */
-  public String getUserAge(int UserId);
+  public String getUserId(int UserId);
 }

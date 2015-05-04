@@ -48,9 +48,9 @@ public class User {
   }
 
   /**
-   * Create the method to registrate the user if the ages are valid.
+   * Create the method to register the user if the ages are valid.
    */
-  public void registrate() {
+  public void register() {
     if (!validateAge()) {
       throw new InvalidAgeError(String.format("Age must be from 10 to 100. Was %s instead.", this.userAge));
     }
@@ -64,7 +64,7 @@ public class User {
    * @return is the returned values.
    */
   public boolean isAdult(int userId) {
-    String userAge = database.getUserAge(userId);
+    String userAge = database.getUserId(userId);
     int parsAge = Integer.parseInt(userAge);
 
     return (parsAge > adultAge);

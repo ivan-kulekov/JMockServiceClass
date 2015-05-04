@@ -8,14 +8,14 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertThat;
 
 /**
  * @author Ivan Kulekov (ivankulekov10@gmail.com)
- * @since Apr 30 , 2015 13:55
+ * @since May 04 , 2015 11:37
  */
-public class UserAgeValidationTest {
+public class readUserFromDatabaseTest {
+
 
   @Rule
   public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -35,33 +35,32 @@ public class UserAgeValidationTest {
     user = new User("Ivan Kulekov", "22", ageValidator, database);
   }
 
-
   @Test
-  public void happyPath() {
-    user = new User("Petko" , "20" , ageValidator , database);
+  public void readOldestUserFromDatabase() {
+    final int userId = 0;
+
     context.checking(new Expectations() {{
 
-      oneOf(ageValidator).isValid(user.getAge());
-      will(returnValue(true));
+      oneOf(database).getUserId(userId);
+      will(returnValue("34"));
+
     }});
 
-    user.register();
-    assertThat(user.validateAge(), is(true));
+    assertThat(user.isAdult(userId), is(true));
   }
 
+  @Test
+  public void readAdultUserFromDatabase() {
 
-  @Test(expected = InvalidAgeError.class)
-  public void invalidPersonCanNotBeRegistrable() {
-    user = new User("Ivan Kulekov", "109", ageValidator, database);
+    final int userId = 0;
 
     context.checking(new Expectations() {{
 
-      oneOf(ageValidator).isValid(user.getAge());
-      will(returnValue(false));
+      oneOf(database).getUserId(userId);
+      will(returnValue("14"));
     }});
 
-    user.register();
-    assertThat(user.validateAge(), is(false));
+    assertThat(user.isAdult(userId), is(false));
   }
 
 
