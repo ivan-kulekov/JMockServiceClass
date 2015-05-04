@@ -31,6 +31,7 @@ public class UserAgeValidationTest {
 
   @Before
   public void setUp() {
+
     user = new User("Ivan Kulekov", "22", ageValidator, database);
   }
 
