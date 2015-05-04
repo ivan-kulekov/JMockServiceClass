@@ -38,14 +38,13 @@ public class UserAgeValidationTest {
 
   @Test
   public void happyPath() {
-    user = new User("Petko" , "20" , ageValidator , database);
+    user = new User("Peter", "20", ageValidator, database);
     context.checking(new Expectations() {{
 
       oneOf(ageValidator).isValid(user.getAge());
       will(returnValue(true));
     }});
 
-    user.register();
     assertThat(user.validateAge(), is(true));
   }
 
@@ -63,6 +62,5 @@ public class UserAgeValidationTest {
     user.register();
     assertThat(user.validateAge(), is(false));
   }
-
 
 }

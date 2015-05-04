@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
  * @author Ivan Kulekov (ivankulekov10@gmail.com)
  * @since May 04 , 2015 11:37
  */
-public class readUserFromDatabaseTest {
+public class ReadUserFromDatabaseTest {
 
 
   @Rule
