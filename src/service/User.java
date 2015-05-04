@@ -39,27 +39,16 @@ public class User {
   }
 
   /**
-   * Create a method witch is for to validate ages.
-   *
-   * @return the validation on the ages.
-   */
-  public boolean validateAge() {
-
-    if (ageValidator.isValid(userAge)) {
-      return true;
-    }
-
-    return false;
-  }
-
-  /**
    * Create the method to register the user if the ages are valid.
    */
-  public void register() {
-    if (!validateAge()) {
-      throw new InvalidAgeError(String.format("Age must be from 10 to 100. Was %s instead.", this.userAge));
+  public boolean register() {
+    if (ageValidator.isValid(userAge)) {
+      database.saveUser(this.userName, this.userAge);
+      return true;
+
     }
-    database.saveUser(this.userName, this.userAge);
+    throw new InvalidAgeError(String.format("Age must be from 10 to 100. Was %s instead.", this.userAge));
+
   }
 
   /**
