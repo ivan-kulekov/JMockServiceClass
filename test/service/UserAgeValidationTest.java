@@ -45,6 +45,7 @@ public class UserAgeValidationTest {
       will(returnValue(true));
     }});
 
+//    user.register();
     assertThat(user.validateAge(), is(true));
   }
 

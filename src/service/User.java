@@ -44,7 +44,12 @@ public class User {
    * @return the validation on the ages.
    */
   public boolean validateAge() {
-    return ageValidator.isValid(userAge);
+
+    if (ageValidator.isValid(userAge)) {
+      return true;
+    }
+
+    return false;
   }
 
   /**
