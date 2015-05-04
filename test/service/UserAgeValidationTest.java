@@ -21,7 +21,7 @@ public class UserAgeValidationTest {
   public JUnitRuleMockery context = new JUnitRuleMockery();
 
   @Mock
-  public AgeValidator ageValidator;
+  public AgeValidator userAge;
 
   @Mock
   public Database database;
@@ -32,16 +32,16 @@ public class UserAgeValidationTest {
   @Before
   public void setUp() {
 
-    user = new User("Ivan Kulekov", "22", ageValidator, database);
+    user = new User("Ivan Kulekov", "22", userAge, database);
   }
 
 
   @Test
   public void happyPath() {
-    user = new User("Peter", "20", ageValidator, database);
+    user = new User("Peter", "20", userAge, database);
     context.checking(new Expectations() {{
 
-      oneOf(ageValidator).isValid(user.getAge());
+      oneOf(userAge).isValid(user.getAge());
       will(returnValue(true));
     }});
 
@@ -51,11 +51,11 @@ public class UserAgeValidationTest {
 
   @Test(expected = InvalidAgeError.class)
   public void invalidPersonCanNotBeRegistrable() {
-    user = new User("Ivan Kulekov", "109", ageValidator, database);
+    user = new User("Ivan Kulekov", "109", userAge, database);
 
     context.checking(new Expectations() {{
 
-      oneOf(ageValidator).isValid(user.getAge());
+      oneOf(userAge).isValid(user.getAge());
       will(returnValue(false));
     }});
 
